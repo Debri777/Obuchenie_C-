@@ -1,63 +1,76 @@
-﻿/*Задача 19
+﻿
+/* Задача 25: Напишите цикл, который принимает на вход два числа (A и B)
+ и возводит число A в натуральную степень B. */
 
-Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
+Console.WriteLine("Введите число А: ");
+int numA = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число B: ");
+int numB = Convert.ToInt32(Console.ReadLine());
+int step = numA;
 
-14212 -> нет
+for (int i = 1; i < numB; i++)
+{
+    step = step * numA;
+}
+Console.WriteLine("A в степени В равно: " + step);
 
-12821 -> да
 
-23432 -> да
-*/
+
 Console.Clear();
-Console.WriteLine("Enter a number: ");
-string number = Console.ReadLine();
-int i = number.Length;
-
-if (i == 5)
+Console.WriteLine("Enter num: ");
+int num = int.Parse(Console.ReadLine());
+Console.WriteLine($"Enter Pow");
+int rank = int.Parse(Console.ReadLine());
+Console.WriteLine($"{num} в степени {rank} = {Pow(num, rank)}");
+int Pow(int num, int rank)
 {
-    if (number[0] == number[4] && number[1] == number[3])
+    if (rank == 0) return 1;
+    else if (rank == 1) return num;
+    else if (num == 0 || num == 1) return num;
+
+    int result = num;
+    for (int i = 2; i <= rank; i++)
     {
-        Console.WriteLine($"{number} - Corresponds to-Palindrome");
+        result *= num;
     }
-    else
-    {
-        Console.WriteLine($"{number} - Does not match-Palindrome");
-    }
+    return result;
 }
-else
+
+
+
+/* Напишите программу, каторая принимает на вход число А 
+и выдаёт сумму чисел от 1 до А.
+ */
+
+Console.WriteLine("Введите число : ");
+int limit = int.Parse(Console.ReadLine());
+Console.WriteLine($"Сумма чисел от 1 до{limit} равна {GetSum(limit)}");
+
+int GetSum(int limit)
 {
-    Console.WriteLine($"{number} - not a five-digit number: ");
+    int sum = 0;
+    for (int i = 1; i <= limit; i++)
+        sum += i;
+
+    return sum;
 }
 
-Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
 
-14212 -> нет
+/* Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
+1, 2, 5, 7, 19 -> [1, 2, 5, 7, 19]
+6, 1, 33 -> [6, 1, 33] */
 
-12821 -> да
-
-23432 -> да
-*/
 Console.Clear();
-Console.WriteLine("Enter a number: ");
-string number = Console.ReadLine();
-int i = number.Length;
 
-if (i == 5)
+int[] array = GetRandomArray(8, 0, 100);
+Console.WriteLine($"[{String.Join(",", array)}]");
+
+int[] GetRandomArray(int size, int minValue, int maxValue)
 {
-    if (number[0] == number[4] && number[1] == number[3])
+    int[] result = new int[size];
+    for (int i = 0; i < size; i++)
     {
-        Console.WriteLine($"{number} - Corresponds to-Palindrome");
+        result[i] = new Random().Next(minValue, maxValue + 1);
     }
-    else
-    {
-        Console.WriteLine($"{number} - Does not match-Palindrome");
-    }
+    return result;
 }
-else
-{
-    Console.WriteLine($"{number} - not a five-digit number: ");
-}
-
-/*Задача 21
-
-Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
